@@ -80,9 +80,9 @@ module.exports = (robot) ->
           branch = hook.ref.split("/")[2..].join("/")
           # if the ref before the commit is 00000, this is a new branch
           if /^0+$/.test(hook.before)
-            message = "*#{hook.user_name}* pushed a new branch (*#{branch}*) to *#{hook.repository.name}* (_#{hook.repository.homepage}_)"
+            message = "*#{hook.user_name}* pushed a new branch (*#{branch}*) to *#{hook.repository.name}* (#{hook.repository.homepage} )"
           else
-            message = "*#{hook.user_name}* pushed *#{hook.total_commits_count}* commits to *#{branch}* in *#{hook.repository.name}* (_#{hook.repository.homepage + '/compare/' + hook.before.substr(0,9) + '...' + hook.after.substr(0,9)}_ )"
+            message = "*#{hook.user_name}* pushed *#{hook.total_commits_count}* commits to *#{branch}* in *#{hook.repository.name}* (#{hook.repository.homepage + '/compare/' + hook.before.substr(0,9) + '...' + hook.after.substr(0,9)} )"
           robot.send user, message
         # not code? must be a something good!
         else
